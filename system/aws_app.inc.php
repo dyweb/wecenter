@@ -163,7 +163,8 @@ class AWS_APP
         }
         else
         {
-            define('G_STATIC_URL', base_url() . '/static');
+//            define('G_STATIC_URL', base_url() . '/static');
+            define('G_STATIC_URL', base_url());
         }
 
 		if (self::config()->get('system')->debug)
