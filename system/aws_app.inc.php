@@ -72,6 +72,11 @@ class AWS_APP
 			$access_rule = $handle_controller->get_access_rule();
 		}
 
+        // 开启全站登陆, 非account相关url都要检查(这里只是排除了登陆登出以及相关的ajax)
+        if(strpos($_SERVER['REQUEST_URI'],'/?/account') !== 0){
+            self::login();
+        }
+
 		// 判断访问规则使用白名单还是黑名单, 默认使用黑名单
 		if ($access_rule)
 		{
