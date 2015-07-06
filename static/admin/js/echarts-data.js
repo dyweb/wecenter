@@ -14,6 +14,7 @@ $(function () {
     $('.aw-content-wrap').find('.date-start').val(dateArr[1]);
     $('.aw-content-wrap').find('.date-end').val(dateArr[0]);
 
+
     //图表数据接入
     var echart = new Echarts('#main', 'line', G_BASE_URL + '/admin/ajax/statistic/?tag=new_user,user_valid&start_date=' + dateArr[3] + '&end_date=' + dateArr[2]);
     var echart2 = new Echarts('#main2', 'line', G_BASE_URL + '/admin/ajax/statistic/?tag=new_question,new_answer,new_topic,new_favorite_item,new_question_redirect&start_date=' + dateArr[3] + '&end_date=' + dateArr[2]);
@@ -47,14 +48,12 @@ $(function () {
                 var target = ev.targe || ev.srcElement;
 
                 if (ev.target.nodeName.toLocaleLowerCase() == "a") {
-
-                    var start_date = ($(this).find('.date-start').val()).substring(0, 7),
-                        end_date = ($(this).find('.date-end').val()).substring(0, 7),
+                    var start_date = $(this).find('.date-start').val(),
+                        end_date = $(this).find('.date-end').val(),
                         aEchart = '';
                     i > 0 ? aEchart = eval('echart' + (i + 1)) : aEchart = eval(aEchart = 'echart');
 
                     var url = aEchart.url.substring(0, aEchart.url.search(/&/)) + '&start_date=' + start_date + '&end_date=' + end_date;
-
 
                     aEchart.initChart(url);
                 }
@@ -108,8 +107,8 @@ function getDate() {
         endDate += "0" + Day;
     }
 
-    stratDateM = stratDate.substring(0, 7);
-    endDateM = endDate.substring(0, 7);
+    stratDateM = stratDate;
+    endDateM = endDate;
 
     arr.push(stratDate, endDate, stratDateM, endDateM);
     return arr;
