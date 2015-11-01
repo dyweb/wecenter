@@ -75,7 +75,9 @@ class AWS_APP
 //        die($_SERVER['REQUEST_URI']);
         // 开启全站登陆, 非account相关url都要检查(这里只是排除了登陆登出以及相关的ajax)
         // 对于移动版也需要
-        if(strpos($_SERVER['REQUEST_URI'],'/?/account') !== 0 AND strpos($_SERVER['REQUEST_URI'],'/?/m') !== 0 ){
+        if (strpos($_SERVER['REQUEST_URI'],'/?/account') !== 0
+        AND strpos($_SERVER['REQUEST_URI'],'/?/m') !== 0
+        AND strpos($_SERVER['REQUEST_URI'],'/?/upgrade') !== 0) {
             self::login();
         }
 
