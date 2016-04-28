@@ -28,14 +28,14 @@ class core_user
 			$auth_hash_key = md5(G_COOKIE_HASH_KEY . $_SERVER['HTTP_USER_AGENT']);
 
 			// 解码 Cookie
-			$sso_user_login = H::decode_hash($_COOKIE[G_COOKIE_PREFIX . '_user_login'], $auth_hash_key);
+			$sso_user_login = json_decode(AWS_APP::crypt()->decode($_COOKIE[G_COOKIE_PREFIX . '_user_login'], $auth_hash_key), true);
 
 			if ($sso_user_login['user_name'] AND $sso_user_login['password'] AND $sso_user_login['uid'])
 			{
-				if (AWS_APP::model('account')->check_hash_login($sso_user_login['user_name'], $sso_user_login['password']))
+				if ($user_info = AWS_APP::model('account')->check_hash_login($sso_user_login['user_name'], $sso_user_login['password']))
 				{
-					AWS_APP::session()->client_info['__CLIENT_UID'] = $sso_user_login['uid'];
-					AWS_APP::session()->client_info['__CLIENT_USER_NAME'] = $sso_user_login['user_name'];
+					AWS_APP::session()->client_info['__CLIENT_UID'] = $user_info['uid'];
+					AWS_APP::session()->client_info['__CLIENT_USER_NAME'] = $user_info['user_name'];
 					AWS_APP::session()->client_info['__CLIENT_PASSWORD'] = $sso_user_login['password'];
 
 					return true;
