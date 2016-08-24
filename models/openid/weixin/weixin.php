@@ -31,7 +31,12 @@ class openid_weixin_weixin_class extends AWS_MODEL
             return false;
         }
         
-        $url = self::WEIXIN_API . $url . '?access_token=' . $this->get_access_token($app_id, $app_secret);
+        if (!$access_token = $this->get_access_token($app_id, $app_secret))
+		{
+			return false;
+		}
+
+        $url = self::WEIXIN_API . $url . '?access_token=' . $access_token;
 
         $result = HTTP::request($url, $method, $contents);
 
@@ -203,8 +208,6 @@ class openid_weixin_weixin_class extends AWS_MODEL
             return true;
         }
 
-        $this->associate_avatar($uid, $access_user['headimgurl']);
-
         $this->insert('users_weixin', array(
             'uid' => intval($uid),
             'openid' => $access_token['openid'],
@@ -220,6 +223,8 @@ class openid_weixin_weixin_class extends AWS_MODEL
             'country' => $access_user['country'],
             'add_time' => time()
         ));
+        
+        $this->associate_avatar($uid, $access_user['headimgurl']);
 
         $this->model('account')->associate_remote_avatar($uid, $access_user['headimgurl']);
 
