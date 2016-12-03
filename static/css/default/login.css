@@ -16,6 +16,9 @@ body{background:url('img/login_bg.jpg') no-repeat #e9f0f4;}
 .btn-twitter{background-color: #1eb5ee;color: #fff !important;}
 .btn-twitter:hover{background-color: #00ace6;}
 .btn-twitter:active{background-color: #009dd2;}
+.btn-gitlab{background-color: #e14329;color: #fff !important;}
+.btn-gitlab:hover{background-color: #d3371e;}
+.btn-gitlab:active{background-color: #bc2e18;}
 .btn-wechat{background-color: #73db42;color: #fff !important;}
 .btn-primary{border:none;background-color: #59b0ff;}
 .btn-primary:hover{background-color: #4daaff;}
