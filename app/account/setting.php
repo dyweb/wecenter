@@ -123,6 +123,11 @@ class setting extends AWS_CONTROLLER
 			TPL::assign('twitter', $this->model('openid_twitter')->get_twitter_user_by_uid($this->user_id));
 		}
 
+		if (get_setting('gitlab_login_enabled') == 'Y')
+		{
+			TPL::assign('gitlab', $this->model('openid_gitlab')->get_gitlab_user_by_uid($this->user_id));
+		}
+
 		TPL::output('account/setting/openid');
 	}
 

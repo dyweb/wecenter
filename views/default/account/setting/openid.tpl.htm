@@ -1,7 +1,7 @@
 <?php TPL::output('global/header.tpl.htm'); ?>
 <?php TPL::output('account/setting/setting_header.tpl.htm'); ?>
 
-<?php if (get_setting('sina_weibo_enabled') == 'Y' || get_setting('qq_login_enabled') == 'Y' || get_setting('google_login_enabled') == 'Y' || get_setting('facebook_login_enabled') == 'Y' || get_setting('twitter_login_enabled') == 'Y' || get_setting('weixin_app_id') && get_setting('weixin_app_secret') && get_setting('weixin_account_role') == 'service') { ?>
+<?php if (get_setting('sina_weibo_enabled') == 'Y' || get_setting('qq_login_enabled') == 'Y' || get_setting('google_login_enabled') == 'Y' || get_setting('facebook_login_enabled') == 'Y' || get_setting('twitter_login_enabled') == 'Y' || get_setting('gitlab_login_enabled') == 'Y' || get_setting('weixin_app_id') && get_setting('weixin_app_secret') && get_setting('weixin_account_role') == 'service') { ?>
 <div class="aw-mod">
 	<div class="mod-body">
 		<div class="aw-mod mod-setting-bind">
@@ -112,6 +112,24 @@
 						<a href="account/openid/twitter/unbind/" class="btn btn-normal btn-gray"><?php _e('取消绑定'); ?></a>
 						<?php } else { ?>
 						<a href="account/openid/twitter/bind/" class="btn btn-normal btn-success"><?php _e('绑定'); ?></a>
+						<?php } ?>
+					</li>
+					<?php } ?>
+
+					<?php if (get_setting('gitlab_login_enabled') == 'Y') { ?>
+					<li>
+						<i class="icon icon-google"></i>
+						<p>
+							<?php if ($this->gitlab) { ?>
+								<a href="<?php echo $this->gitlab['link']; ?>" target="_blank"><?php echo $this->gitlab['name']; ?></a>
+							<?php } else { ?>
+								GitLab
+							<?php } ?>
+						</p>
+						<?php if ($this->gitlab) { ?>
+						<a href="account/openid/gitlab/unbind/" class="btn btn-normal btn-gray"><?php _e('取消绑定'); ?></a>
+						<?php } else { ?>
+						<a href="account/openid/gitlab/bind/" class="btn btn-normal btn-success"><?php _e('绑定'); ?></a>
 						<?php } ?>
 					</li>
 					<?php } ?>

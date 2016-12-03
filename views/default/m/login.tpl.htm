@@ -35,6 +35,12 @@
 							<?php _e('QQ登录');?>
 						</a>
 						<?php } ?>
+						<?php if (get_setting('gitlab_login_enabled') == 'Y') { ?>
+						<a href="account/openid/gitlab/bind/">
+							<i class="icon icon-qq"></i>
+							<?php _e('GitLab 登录');?>
+						</a>
+						<?php } ?>
 					</li>
 					<li class="text-center meta">
 						<a href="m/find_password/"><?php _e('找回密码'); ?></a>
